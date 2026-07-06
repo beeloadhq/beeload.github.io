@@ -1,21 +1,21 @@
 /* ==========================================
-   BEELOAD V3
-   Engineering Intelligent Systems
+   BEELOAD WEBSITE 1.0
+   script.js
 ========================================== */
 
 document.addEventListener("DOMContentLoaded", () => {
 
-    // ==========================
-    // Scroll Reveal Animation
-    // ==========================
+    // ==========================================
+    // Scroll Reveal
+    // ==========================================
 
-    const revealElements = document.querySelectorAll(
-        ".section, .vision, .card"
+    const elements = document.querySelectorAll(
+        ".section, .quote, footer"
     );
 
     const observer = new IntersectionObserver((entries) => {
 
-        entries.forEach(entry => {
+        entries.forEach((entry) => {
 
             if (entry.isIntersecting) {
 
@@ -31,7 +31,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     });
 
-    revealElements.forEach(element => {
+    elements.forEach((element) => {
 
         element.classList.add("hidden");
 
@@ -39,32 +39,46 @@ document.addEventListener("DOMContentLoaded", () => {
 
     });
 
-    // ==========================
-    // Smooth Button Animation
-    // ==========================
+    // ==========================================
+    // Hero Button Smooth Scroll
+    // ==========================================
 
     const button = document.querySelector(".button");
 
     if (button) {
 
-        button.addEventListener("mouseenter", () => {
+        button.addEventListener("click", (event) => {
 
-            button.style.boxShadow =
-                "0 0 30px rgba(200,164,93,.35)";
+            event.preventDefault();
 
-        });
+            document
+                .querySelector("#engineering")
+                .scrollIntoView({
 
-        button.addEventListener("mouseleave", () => {
+                    behavior: "smooth"
 
-            button.style.boxShadow = "none";
+                });
 
         });
 
     }
 
-    // ==========================
+    // ==========================================
+    // Footer Year
+    // ==========================================
+
+    const copyright = document.querySelector("footer small");
+
+    if (copyright) {
+
+        copyright.innerHTML =
+            `© ${new Date().getFullYear()} Beeload. All rights reserved.`;
+
+    }
+
+    // ==========================================
     // Logo Hover
-    // ==========================
+    // ==========================================
 
     const logo = document.querySelector(".logo");
 
@@ -72,28 +86,61 @@ document.addEventListener("DOMContentLoaded", () => {
 
         logo.addEventListener("mouseenter", () => {
 
-            logo.style.transform = "scale(1.06) rotate(2deg)";
+            logo.style.transform = "scale(1.05)";
 
         });
 
         logo.addEventListener("mouseleave", () => {
 
-            logo.style.transform = "scale(1) rotate(0deg)";
+            logo.style.transform = "scale(1)";
 
         });
 
     }
 
-    // ==========================
-    // Current Year
-    // ==========================
+    // ==========================================
+    // Active Navigation (per futuro menu)
+    // ==========================================
 
-    const footer = document.querySelector("footer p");
+    const sections = document.querySelectorAll("section");
 
-    if (footer) {
+    const navLinks = document.querySelectorAll("nav a");
 
-        footer.innerHTML =
-            `© ${new Date().getFullYear()} Beeload. All rights reserved.`;
+    if (navLinks.length > 0) {
+
+        window.addEventListener("scroll", () => {
+
+            let current = "";
+
+            sections.forEach((section) => {
+
+                const top = section.offsetTop - 120;
+
+                if (window.scrollY >= top) {
+
+                    current = section.getAttribute("id");
+
+                }
+
+            });
+
+            navLinks.forEach((link) => {
+
+                link.classList.remove("active");
+
+                const href = link.getAttribute("href");
+
+                if (
+                    href &&
+                    href.startsWith("#") &&
+                    href.substring(1) === current
+                ) {
+                    link.classList.add("active");
+                }
+
+            });
+
+        });
 
     }
 
