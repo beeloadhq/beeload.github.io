@@ -1,34 +1,100 @@
+/* ==========================================
+   BEELOAD V3
+   Engineering Intelligent Systems
+========================================== */
+
 document.addEventListener("DOMContentLoaded", () => {
 
-    const sections = document.querySelectorAll(".section, .vision");
+    // ==========================
+    // Scroll Reveal Animation
+    // ==========================
 
-    const observer = new IntersectionObserver((entries)=>{
+    const revealElements = document.querySelectorAll(
+        ".section, .vision, .card"
+    );
 
-        entries.forEach(entry=>{
+    const observer = new IntersectionObserver((entries) => {
 
-            if(entry.isIntersecting){
+        entries.forEach(entry => {
 
-                entry.target.style.opacity="1";
-                entry.target.style.transform="translateY(0)";
+            if (entry.isIntersecting) {
+
+                entry.target.classList.add("visible");
 
             }
 
         });
 
-    },{
+    }, {
 
-        threshold:0.15
+        threshold: 0.15
+
+    });
+
+    revealElements.forEach(element => {
+
+        element.classList.add("hidden");
+
+        observer.observe(element);
 
     });
 
-    sections.forEach(section=>{
+    // ==========================
+    // Smooth Button Animation
+    // ==========================
 
-        section.style.opacity="0";
-        section.style.transform="translateY(50px)";
-        section.style.transition="all .8s ease";
+    const button = document.querySelector(".button");
 
-        observer.observe(section);
+    if (button) {
 
-    });
+        button.addEventListener("mouseenter", () => {
+
+            button.style.boxShadow =
+                "0 0 30px rgba(200,164,93,.35)";
+
+        });
+
+        button.addEventListener("mouseleave", () => {
+
+            button.style.boxShadow = "none";
+
+        });
+
+    }
+
+    // ==========================
+    // Logo Hover
+    // ==========================
+
+    const logo = document.querySelector(".logo");
+
+    if (logo) {
+
+        logo.addEventListener("mouseenter", () => {
+
+            logo.style.transform = "scale(1.06) rotate(2deg)";
+
+        });
+
+        logo.addEventListener("mouseleave", () => {
+
+            logo.style.transform = "scale(1) rotate(0deg)";
+
+        });
+
+    }
+
+    // ==========================
+    // Current Year
+    // ==========================
+
+    const footer = document.querySelector("footer p");
+
+    if (footer) {
+
+        footer.innerHTML =
+            `© ${new Date().getFullYear()} Beeload. All rights reserved.`;
+
+    }
 
 });
