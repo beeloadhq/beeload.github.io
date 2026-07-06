@@ -1,16 +1,34 @@
-// ======================================
-// BEELOAD
-// script.js v1.0
-// ======================================
-
 document.addEventListener("DOMContentLoaded", () => {
 
-    // Fade iniziale del contenuto
-    document.body.style.opacity = "0";
+    const sections = document.querySelectorAll(".section, .vision");
 
-    setTimeout(() => {
-        document.body.style.transition = "opacity 0.8s ease";
-        document.body.style.opacity = "1";
-    }, 100);
+    const observer = new IntersectionObserver((entries)=>{
+
+        entries.forEach(entry=>{
+
+            if(entry.isIntersecting){
+
+                entry.target.style.opacity="1";
+                entry.target.style.transform="translateY(0)";
+
+            }
+
+        });
+
+    },{
+
+        threshold:0.15
+
+    });
+
+    sections.forEach(section=>{
+
+        section.style.opacity="0";
+        section.style.transform="translateY(50px)";
+        section.style.transition="all .8s ease";
+
+        observer.observe(section);
+
+    });
 
 });
