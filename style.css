@@ -1,15 +1,21 @@
-/* ==========================
-   BEELOAD DESIGN SYSTEM v1.0
-========================== */
+/* ==========================================
+   BEELOAD V3
+   Engineering Intelligent Systems
+========================================== */
 
 :root{
-    --bg:#0A0A0A;
-    --surface:#111111;
-    --text:#F5F5F5;
-    --muted:#8A8A8A;
+
+    --bg:#050505;
+    --surface:#101010;
+    --border:#232323;
+
+    --text:#FFFFFF;
+    --muted:#9A9A9A;
+
     --gold:#C8A45D;
-    --border:#242424;
-    --max-width:1100px;
+
+    --max-width:1200px;
+
 }
 
 *{
@@ -23,220 +29,74 @@ html{
 }
 
 body{
+
     background:var(--bg);
+
     color:var(--text);
+
     font-family:"Manrope",sans-serif;
+
+    overflow-x:hidden;
+
     line-height:1.7;
-    -webkit-font-smoothing:antialiased;
+
+}
+
+/* BACKGROUND */
+
+.background-grid{
+
+    position:fixed;
+
+    inset:0;
+
+    background-image:
+
+        linear-gradient(rgba(255,255,255,.03) 1px,transparent 1px),
+
+        linear-gradient(90deg,rgba(255,255,255,.03) 1px,transparent 1px);
+
+    background-size:40px 40px;
+
+    z-index:-2;
+
 }
 
 /* HERO */
 
 .hero{
-    min-height:100vh;
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    text-align:center;
-    padding:40px 24px;
-}
 
-.hero-content{
-    max-width:800px;
-}
-
-.logo{
-    width:110px;
-    margin-bottom:40px;
-    transition:.5s ease;
-}
-
-.logo:hover{
-    transform:scale(1.04);
-}
-
-h1{
-    font-size:clamp(3rem,8vw,5.5rem);
-    font-weight:800;
-    letter-spacing:-2px;
-}
-
-.hero h2{
-    margin-top:12px;
-    font-size:1.4rem;
-    color:var(--gold);
-    font-weight:500;
-}
-
-.hero p{
-    margin:32px auto;
-    max-width:620px;
-    color:var(--muted);
-    font-size:1.15rem;
-}
-
-.button{
-    display:inline-block;
-    padding:14px 34px;
-    border:1px solid var(--gold);
-    border-radius:999px;
-    color:var(--text);
-    text-decoration:none;
-    transition:.3s;
-}
-
-.button:hover{
-    background:var(--gold);
-    color:#000;
-}
-
-/* SECTIONS */
-
-.section{
-    max-width:var(--max-width);
-    margin:auto;
-    padding:140px 24px;
-    border-top:1px solid var(--border);
-}
-
-.section span{
-    color:var(--gold);
-    font-size:.9rem;
-    letter-spacing:3px;
-}
-
-.section h2{
-    font-size:3rem;
-    margin:18px 0 24px;
-}
-
-.section p{
-    max-width:650px;
-    color:var(--muted);
-    font-size:1.15rem;
-}
-
-/* VISION */
-
-.vision{
-    padding:180px 24px;
-    text-align:center;
-}
-
-.vision h2{
-    font-size:clamp(2.5rem,6vw,5rem);
-    line-height:1.15;
-    font-weight:800;
-}
-
-/* FOOTER */
-
-footer{
-    border-top:1px solid var(--border);
-    padding:60px 24px;
-    text-align:center;
-}
-
-.footer-links{
-    display:flex;
-    justify-content:center;
-    flex-wrap:wrap;
-    gap:28px;
-    margin-bottom:32px;
-}
-
-.footer-links a{
-    color:var(--muted);
-    text-decoration:none;
-    transition:.25s;
-}
-
-.footer-links a:hover{
-    color:var(--gold);
-}
-
-footer p{
-    color:#666;
-    font-size:.95rem;
-}
-
-/* RESPONSIVE */
-
-@media (max-width:768px){
-
-.hero{
-    padding:80px 24px;
-}
-
-.logo{
-    width:90px;
-}
-
-.hero h2{
-    font-size:1.15rem;
-}
-
-.hero p{
-    font-size:1rem;
-}
-
-.section{
-    padding:90px 24px;
-}
-
-.section h2{
-    font-size:2.2rem;
-}
-
-.vision{
-    padding:120px 24px;
-}
-
-}
-
-/* ==========================
-   BEELOAD V2.0
-========================== */
-
-/* Sfondo con griglia tecnica */
-body{
-    background-color:#0A0A0A;
-    background-image:
-        linear-gradient(rgba(255,255,255,.025) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(255,255,255,.025) 1px, transparent 1px);
-    background-size:40px 40px;
-}
-
-/* Effetto vetro sul pulsante */
-.button{
-    backdrop-filter:blur(10px);
-}
-
-/* Hero più elegante */
-.hero{
     position:relative;
-    overflow:hidden;
+
+    min-height:100vh;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    padding:40px 24px;
+
+    text-align:center;
+
 }
 
-/* Luce dietro il logo */
-.hero::before{
-
-    content:"";
+.glow{
 
     position:absolute;
 
-    width:600px;
-    height:600px;
+    width:650px;
+
+    height:650px;
 
     border-radius:50%;
 
-    background:radial-gradient(
-        circle,
-        rgba(200,164,93,.10),
-        transparent 70%
-    );
+    background:radial-gradient(circle,
+    rgba(200,164,93,.14),
+    transparent 70%);
 
-    filter:blur(60px);
+    filter:blur(70px);
 
     z-index:0;
 
@@ -248,49 +108,363 @@ body{
 
     z-index:2;
 
+    max-width:760px;
+
 }
 
-/* Animazione titolo */
+.logo{
+
+    width:120px;
+
+    margin-bottom:40px;
+
+    transition:.4s;
+
+}
+
+.logo:hover{
+
+    transform:scale(1.05);
+
+}
 
 h1{
 
-    animation:fadeUp 1.1s ease;
+    font-size:clamp(3rem,8vw,6rem);
+
+    font-weight:800;
+
+    letter-spacing:-3px;
 
 }
 
 .hero h2{
 
-    animation:fadeUp 1.4s ease;
+    margin-top:15px;
+
+    color:var(--gold);
+
+    font-weight:500;
+
+    font-size:1.35rem;
 
 }
 
 .hero p{
 
-    animation:fadeUp 1.7s ease;
+    margin:35px auto;
+
+    max-width:650px;
+
+    color:var(--muted);
+
+    font-size:1.15rem;
 
 }
 
 .button{
 
-    animation:fadeUp 2s ease;
+    display:inline-block;
+
+    padding:15px 38px;
+
+    border-radius:999px;
+
+    border:1px solid var(--gold);
+
+    color:white;
+
+    text-decoration:none;
+
+    transition:.3s;
+
+    backdrop-filter:blur(12px);
+
+}
+
+.button:hover{
+
+    background:var(--gold);
+
+    color:#050505;
+
+    transform:translateY(-3px);
+
+}
+
+/* SECTION */
+
+.section{
+
+    max-width:var(--max-width);
+
+    margin:auto;
+
+    padding:140px 24px;
+
+}
+
+.section span{
+
+    color:var(--gold);
+
+    letter-spacing:3px;
+
+    font-size:.85rem;
+
+}
+
+.section h2{
+
+    margin:18px 0 60px;
+
+    font-size:3rem;
+
+}
+
+.cards{
+
+    display:grid;
+
+    grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+
+    gap:28px;
+
+}
+
+.card{
+
+    background:rgba(255,255,255,.03);
+
+    border:1px solid var(--border);
+
+    border-radius:24px;
+
+    padding:40px;
+
+    transition:.35s;
+
+}
+
+.card:hover{
+
+    transform:translateY(-8px);
+
+    border-color:var(--gold);
+
+}
+
+.card h3{
+
+    margin-bottom:18px;
+
+    font-size:1.4rem;
+
+}
+
+.card p{
+
+    color:var(--muted);
+
+}
+
+/* VISION */
+
+.vision{
+
+    padding:180px 24px;
+
+    text-align:center;
+
+}
+
+.small-title{
+
+    color:var(--gold);
+
+    letter-spacing:4px;
+
+    margin-bottom:24px;
+
+}
+
+.vision h2{
+
+    font-size:clamp(2.5rem,6vw,5.5rem);
+
+    line-height:1.15;
+
+}
+
+/* FOOTER */
+
+footer{
+
+    border-top:1px solid var(--border);
+
+    padding:60px 24px;
+
+    text-align:center;
+
+}
+
+.footer-logo{
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    gap:15px;
+
+    margin-bottom:35px;
+
+}
+
+.footer-icon{
+
+    width:40px;
+
+}
+
+.footer-links{
+
+    display:flex;
+
+    flex-wrap:wrap;
+
+    justify-content:center;
+
+    gap:24px;
+
+    margin-bottom:35px;
+
+}
+
+.footer-links a{
+
+    color:var(--muted);
+
+    text-decoration:none;
+
+    transition:.3s;
+
+}
+
+.footer-links a:hover{
+
+    color:var(--gold);
+
+}
+
+footer p{
+
+    color:#666;
+
+}
+
+/* ANIMATIONS */
+
+.hero-content>*{
+
+    animation:fadeUp 1s ease both;
+
+}
+
+.hero-content>*:nth-child(2){
+
+    animation-delay:.15s;
+
+}
+
+.hero-content>*:nth-child(3){
+
+    animation-delay:.3s;
+
+}
+
+.hero-content>*:nth-child(4){
+
+    animation-delay:.45s;
+
+}
+
+.hero-content>*:nth-child(5){
+
+    animation-delay:.6s;
 
 }
 
 @keyframes fadeUp{
 
-from{
+    from{
 
-opacity:0;
+        opacity:0;
 
-transform:translateY(35px);
+        transform:translateY(35px);
+
+    }
+
+    to{
+
+        opacity:1;
+
+        transform:translateY(0);
+
+    }
 
 }
 
-to{
+/* MOBILE */
 
-opacity:1;
+@media(max-width:768px){
 
-transform:translateY(0);
+.logo{
+
+    width:95px;
+
+}
+
+.hero{
+
+    padding:80px 24px;
+
+}
+
+.hero h2{
+
+    font-size:1.1rem;
+
+}
+
+.hero p{
+
+    font-size:1rem;
+
+}
+
+.section{
+
+    padding:90px 24px;
+
+}
+
+.section h2{
+
+    font-size:2.3rem;
+
+}
+
+.card{
+
+    padding:28px;
+
+}
+
+.vision{
+
+    padding:120px 24px;
 
 }
 
