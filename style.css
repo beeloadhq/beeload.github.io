@@ -812,6 +812,39 @@ button:focus{
 
 }
 
-/* =======================================================
+/*
+
+.hidden{
+    opacity:0;
+    transform:translateY(40px);
+    transition:all .8s ease;
+}
+
+.visible{
+    opacity:1;
+    transform:translateY(0);
+}
+
+.nav-links a.active{
+    color:#C8A45D;
+}
+
+@media (max-width:768px){
+
+    .nav-links.open{
+        display:flex;
+        flex-direction:column;
+        position:absolute;
+        top:80px;
+        right:24px;
+        background:#101010;
+        border:1px solid #232323;
+        border-radius:16px;
+        padding:20px;
+        gap:16px;
+        min-width:180px;
+    }
+
+} =======================================================
    END OF FILE
 ======================================================= */
