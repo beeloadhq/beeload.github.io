@@ -1,0 +1,10 @@
+# =======================================================
+# BEELOAD WEBSITE 1.0
+# robots.txt
+# =======================================================
+
+User-agent: *
+
+Allow: /
+
+Sitemap: https://beeload.github.io/sitemap.xml
