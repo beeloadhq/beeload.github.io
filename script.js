@@ -1,21 +1,66 @@
-/* ==========================================
+/* =======================================================
    BEELOAD WEBSITE 1.0
-   script.js
-========================================== */
+   Official JavaScript
+======================================================= */
 
 document.addEventListener("DOMContentLoaded", () => {
 
-    // ==========================================
-    // Scroll Reveal
-    // ==========================================
+    /* ======================================
+       NAVBAR SCROLL EFFECT
+    ====================================== */
 
-    const elements = document.querySelectorAll(
-        ".section, .quote, footer"
-    );
+    const navbar = document.querySelector(".navbar");
 
-    const observer = new IntersectionObserver((entries) => {
+    window.addEventListener("scroll", () => {
 
-        entries.forEach((entry) => {
+        if (window.scrollY > 40) {
+
+            navbar.style.background = "rgba(5,5,5,.88)";
+            navbar.style.borderBottom = "1px solid rgba(200,164,93,.20)";
+            navbar.style.backdropFilter = "blur(18px)";
+
+        } else {
+
+            navbar.style.background = "rgba(5,5,5,.60)";
+            navbar.style.borderBottom = "1px solid rgba(255,255,255,.05)";
+            navbar.style.backdropFilter = "blur(14px)";
+
+        }
+
+    });
+
+    /* ======================================
+       SMOOTH SCROLL
+    ====================================== */
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+
+        anchor.addEventListener("click", function (e) {
+
+            const target = document.querySelector(this.getAttribute("href"));
+
+            if (!target) return;
+
+            e.preventDefault();
+
+            target.scrollIntoView({
+
+                behavior: "smooth",
+                block: "start"
+
+            });
+
+        });
+
+    });
+
+    /* ======================================
+       SCROLL ANIMATION
+    ====================================== */
+
+    const observer = new IntersectionObserver(entries => {
+
+        entries.forEach(entry => {
 
             if (entry.isIntersecting) {
 
@@ -31,116 +76,81 @@ document.addEventListener("DOMContentLoaded", () => {
 
     });
 
-    elements.forEach((element) => {
+    document.querySelectorAll(".section, .card, .cta, .footer").forEach(el => {
 
-        element.classList.add("hidden");
+        el.classList.add("hidden");
 
-        observer.observe(element);
+        observer.observe(el);
 
     });
 
-    // ==========================================
-    // Hero Button Smooth Scroll
-    // ==========================================
-
-    const button = document.querySelector(".button");
-
-    if (button) {
-
-        button.addEventListener("click", (event) => {
-
-            event.preventDefault();
-
-            document
-                .querySelector("#engineering")
-                .scrollIntoView({
-
-                    behavior: "smooth"
-
-                });
-
-        });
-
-    }
-
-    // ==========================================
-    // Footer Year
-    // ==========================================
-
-    const copyright = document.querySelector("footer small");
-
-    if (copyright) {
-
-        copyright.innerHTML =
-            `© ${new Date().getFullYear()} Beeload. All rights reserved.`;
-
-    }
-
-    // ==========================================
-    // Logo Hover
-    // ==========================================
-
-    const logo = document.querySelector(".logo");
-
-    if (logo) {
-
-        logo.addEventListener("mouseenter", () => {
-
-            logo.style.transform = "scale(1.05)";
-
-        });
-
-        logo.addEventListener("mouseleave", () => {
-
-            logo.style.transform = "scale(1)";
-
-        });
-
-    }
-
-    // ==========================================
-    // Active Navigation (per futuro menu)
-    // ==========================================
+    /* ======================================
+       ACTIVE NAV LINK
+    ====================================== */
 
     const sections = document.querySelectorAll("section");
 
-    const navLinks = document.querySelectorAll("nav a");
+    const navLinks = document.querySelectorAll(".nav-links a");
 
-    if (navLinks.length > 0) {
+    window.addEventListener("scroll", () => {
 
-        window.addEventListener("scroll", () => {
+        let current = "";
 
-            let current = "";
+        sections.forEach(section => {
 
-            sections.forEach((section) => {
+            const sectionTop = section.offsetTop - 180;
 
-                const top = section.offsetTop - 120;
+            if (window.scrollY >= sectionTop) {
 
-                if (window.scrollY >= top) {
+                current = section.getAttribute("id");
 
-                    current = section.getAttribute("id");
-
-                }
-
-            });
-
-            navLinks.forEach((link) => {
-
-                link.classList.remove("active");
-
-                const href = link.getAttribute("href");
-
-                if (
-                    href &&
-                    href.startsWith("#") &&
-                    href.substring(1) === current
-                ) {
-                    link.classList.add("active");
-                }
-
-            });
+            }
 
         });
+
+        navLinks.forEach(link => {
+
+            link.classList.remove("active");
+
+            if (link.getAttribute("href") === "#" + current) {
+
+                link.classList.add("active");
+
+            }
+
+        });
+
+    });
+
+    /* ======================================
+       MOBILE MENU
+    ====================================== */
+
+    const menuButton = document.querySelector(".menu-toggle");
+    const navMenu = document.querySelector(".nav-links");
+
+    if (menuButton && navMenu) {
+
+        menuButton.addEventListener("click", () => {
+
+            navMenu.classList.toggle("open");
+
+        });
+
+    }
+
+    /* ======================================
+       YEAR
+    ====================================== */
+
+    const year = new Date().getFullYear();
+
+    const footerText = document.querySelector(".footer-bottom p");
+
+    if (footerText) {
+
+        footerText.textContent =
+            `© ${year} Beeload. All rights reserved.`;
 
     }
 
