@@ -443,7 +443,7 @@ main{
 
     border-color:var(--gold);
 
-    box-shadow:0 20px 45px rgba(0,0,0,.35);
+    box-shadow:var(--shadow);
 
 }
 
