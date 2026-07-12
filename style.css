@@ -15,6 +15,7 @@
 
 html{
     scroll-behavior:smooth;
+    scrollbar-color:var(--gold) var(--black);
 }
 
 body{
