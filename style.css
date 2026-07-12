@@ -831,7 +831,8 @@ button:focus{
 }
 
 .nav-links a.active{
-    color:#C8A45D;
+    color:var(--gold);
+
 }
 
 @media (max-width:768px){
